@@ -20,16 +20,12 @@ class MainActivity : AppCompatActivity() {
         rc_list = findViewById(R.id.rc_list)
        var sharedPreferences  = getSharedPreferences("Pref", 0)
 
-        val firstTimeLunch: String = SPref.getStringPref(sharedPreferences, SPref.isfFirtTime)
+        val firstTimeLunch: String = sharedPreferences.getString("firTime", "")
 
-        if(firstTimeLunch=="yes")
-        {
-
-        }
-        else
+        if(!firstTimeLunch.isEmpty())
         {
             val editor = sharedPreferences.edit()
-            editor.putString(SPref.isfFirtTime, "no")
+            editor.putString("firTime", "no")
             editor.commit()
 
             for (i in 0..5) {
@@ -40,17 +36,11 @@ class MainActivity : AppCompatActivity() {
             Log.d("Tag", "Inserted to Room")
         }
 
+
     }
 
     private fun saveTask(item: String)
     {
-
-        val firstTimeLunch: String = SPref.getStringPref(sharedPreferences, SPref.isfFirtTime)
-        if(firstTimeLunch=="yes")
-        {
-            val editor = sharedPreferences?.edit()
-            editor?.putString(SPref.isfFirtTime, "yes")
-            editor?.commit()
 
             class SaveTask :
                 AsyncTask<Void?, Void?, Void?>() {
@@ -77,12 +67,6 @@ class MainActivity : AppCompatActivity() {
             val st = SaveTask()
 
             st.execute()
-
-
-
-        }
-
-
 
     }
 }
