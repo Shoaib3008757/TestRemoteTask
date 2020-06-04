@@ -16,5 +16,7 @@ interface TaskDaoInterface {
 
     @Update
     fun update(task: MyRoomTask?)
+
+
 }
 

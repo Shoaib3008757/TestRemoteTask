@@ -2,6 +2,7 @@ package com.example.testroomtask;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,11 +32,26 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.TasksViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(TasksViewHolder holder, int position) {
+    public void onBindViewHolder(TasksViewHolder holder, final int position) {
         MyRoomTask t = taskList.get(position);
         holder.tv_list_item.setText(t.getTaskListItems());
+        holder.tv_list_item_tag.setText(t.getTag());
 
+        Log.i("TAg", "the value of tage is here " + t.getTag());
+        if (t.getTag().toString().equalsIgnoreCase("yes"))
+        {
+            holder.tv_list_item.setTextColor(mCtx.getResources().getColor(R.color.black));
+        }else
+            {
+                holder.tv_list_item.setTextColor(mCtx.getResources().getColor(R.color.dimBlack));
+            }
+        holder.rc_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                singleITemcClick.onSingleItemClick(view, position);
+            }
+        });
 
     }
 
@@ -46,23 +62,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.TasksViewHolder> {
 
     class TasksViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_list_item;
+        TextView tv_list_item, tv_list_item_tag;
         RelativeLayout rc_item;
 
         public TasksViewHolder(View itemView) {
             super(itemView);
 
             tv_list_item = itemView.findViewById(R.id.tv_list_item);
+            tv_list_item_tag = itemView.findViewById(R.id.tv_list_item_tag);
             rc_item = itemView.findViewById(R.id.rc_item);
 
-
-            rc_item.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    singleITemcClick.onSingleItemClick(view);
-                }
-            });
         }
 
        /* @Override

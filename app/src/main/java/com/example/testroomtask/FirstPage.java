@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -113,14 +114,23 @@ public class FirstPage extends AppCompatActivity {
             }
 
             @Override
-            protected void onPostExecute(List<MyRoomTask> tasks) {
+            protected void onPostExecute(final List<MyRoomTask> tasks) {
                 super.onPostExecute(tasks);
                 MyAdapter adapter = new MyAdapter(FirstPage.this, tasks, new SingleITemcClick() {
                     @Override
-                    public void onSingleItemClick(View v) {
+                    public void onSingleItemClick(View v, int position) {
 
+                        TextView tv_list_item = (TextView) v.findViewById(R.id.tv_list_item);
+                        TextView tv_tag = (TextView) v.findViewById(R.id.tv_list_item_tag);
+                        String itemName = tv_list_item.getText().toString();
+                        MyRoomTask task = tasks.get(position);
                         Intent i = new Intent(FirstPage.this, SecondPage.class);
+                        i.putExtra("task", task);
+                        i.putExtra("item", itemName);
+
+                        i.putExtra("tagPos", tasks.get(position).getTag());
                         startActivityForResult(i, 123);
+
                     }
                 });
                 rc_list.setAdapter(adapter);
@@ -129,6 +139,22 @@ public class FirstPage extends AppCompatActivity {
 
         GetTasks gt = new GetTasks();
         gt.execute();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        // check if the request code is same as what is passed  here it is 2
+        if(requestCode==123)
+        {
+            String message=data.getStringExtra("done");
+            if (message.equalsIgnoreCase("done"))
+            {
+                finish();
+                startActivity(new Intent(FirstPage.this, FirstPage.class));
+            }
+        }
     }
 
 }
