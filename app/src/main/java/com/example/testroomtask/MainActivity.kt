@@ -1,5 +1,6 @@
 package com.example.testroomtask
 
+import android.content.SharedPreferences
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
@@ -10,13 +11,14 @@ class MainActivity : AppCompatActivity() {
 
 
     var rc_list: RecyclerView? = null
-    var sharedPreferences = getSharedPreferences("Pref", 0)
+    var sharedPreferences: SharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         rc_list = findViewById(R.id.rc_list)
+       var sharedPreferences  = getSharedPreferences("Pref", 0)
 
         val firstTimeLunch: String = SPref.getStringPref(sharedPreferences, SPref.isfFirtTime)
 
@@ -46,9 +48,9 @@ class MainActivity : AppCompatActivity() {
         val firstTimeLunch: String = SPref.getStringPref(sharedPreferences, SPref.isfFirtTime)
         if(firstTimeLunch=="yes")
         {
-            val editor = sharedPreferences.edit()
-            editor.putString(SPref.isfFirtTime, "yes")
-            editor.commit()
+            val editor = sharedPreferences?.edit()
+            editor?.putString(SPref.isfFirtTime, "yes")
+            editor?.commit()
 
             class SaveTask :
                 AsyncTask<Void?, Void?, Void?>() {

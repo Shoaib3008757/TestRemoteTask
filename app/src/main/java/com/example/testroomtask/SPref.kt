@@ -17,7 +17,7 @@ object SPref {
         editor.commit()
     }
 
-    fun getStringPref(sharedPreferences: SharedPreferences, key: String?): String {
+    fun getStringPref(sharedPreferences: SharedPreferences?, key: String?): String {
         return sharedPreferences.getString(key, "")
     }
 
