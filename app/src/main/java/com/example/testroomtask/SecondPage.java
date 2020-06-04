@@ -41,6 +41,7 @@ public class SecondPage extends AppCompatActivity {
     }
     private void onSubmitClick()
     {
+
         bt_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
