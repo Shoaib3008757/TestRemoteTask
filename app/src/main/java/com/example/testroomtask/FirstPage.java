@@ -25,6 +25,8 @@ public class FirstPage extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         init();
+
+
     }
 
     private void init()
