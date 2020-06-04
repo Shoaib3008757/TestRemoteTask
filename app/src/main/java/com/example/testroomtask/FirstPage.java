@@ -26,7 +26,6 @@ public class FirstPage extends AppCompatActivity {
 
         init();
 
-
     }
 
     private void init()
