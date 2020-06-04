@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import java.util.List;
 
@@ -41,8 +43,15 @@ public class FirstPage extends AppCompatActivity {
             editor.commit();
             for(int i = 0;i<=5;i++)
             {
-                String taskItems= "item " +i;
-                saveTask(taskItems);
+                if (i==0)
+                {
+                    String taskItems= "item " +i;
+                    saveTask(taskItems,"yes");
+                }
+                else {
+                    String taskItems = "item " + i;
+                    saveTask(taskItems, "no");
+                }
             }
 
             Log.d("Tag", "Inserted to Room");
@@ -58,7 +67,7 @@ public class FirstPage extends AppCompatActivity {
 
     }
 
-    private void saveTask(final String listItem) {
+    private void saveTask(final String listItem, final String visibility) {
 
         class SaveTask extends AsyncTask<Void, Void, Void> {
 
@@ -68,6 +77,7 @@ public class FirstPage extends AppCompatActivity {
                 //creating a task
                 MyRoomTask task = new MyRoomTask();
                 task.setTaskListItems(listItem);
+                task.setTag(visibility);
                 //adding to database
 
 
@@ -80,9 +90,8 @@ public class FirstPage extends AppCompatActivity {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                /*finish();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();*/
+
+
             }
         }
 
@@ -106,7 +115,14 @@ public class FirstPage extends AppCompatActivity {
             @Override
             protected void onPostExecute(List<MyRoomTask> tasks) {
                 super.onPostExecute(tasks);
-                MyAdapter adapter = new MyAdapter(FirstPage.this, tasks);
+                MyAdapter adapter = new MyAdapter(FirstPage.this, tasks, new SingleITemcClick() {
+                    @Override
+                    public void onSingleItemClick(View v) {
+
+                        Intent i = new Intent(FirstPage.this, SecondPage.class);
+                        startActivityForResult(i, 123);
+                    }
+                });
                 rc_list.setAdapter(adapter);
             }
         }

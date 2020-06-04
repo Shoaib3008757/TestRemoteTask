@@ -12,6 +12,11 @@ class MyRoomTask : Serializable{
     var id = 0
     @ColumnInfo(name = "taskListItems")
     var taskListItems: String? = null
+    @ColumnInfo(name = "tage")
+    var tag: String? = null
+
+
+
 
 
 }

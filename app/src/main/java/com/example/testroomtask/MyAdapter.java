@@ -1,9 +1,11 @@
 package com.example.testroomtask;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,10 +16,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.TasksViewHolder> {
 
     private Context mCtx;
     private List<MyRoomTask> taskList;
+    SingleITemcClick singleITemcClick;
 
-    public MyAdapter(Context mCtx, List<MyRoomTask> taskList) {
+    public MyAdapter(Context mCtx, List<MyRoomTask> taskList, SingleITemcClick onSingleItemClick ) {
         this.mCtx = mCtx;
         this.taskList = taskList;
+        this.singleITemcClick = onSingleItemClick;
     }
 
     @Override
@@ -40,27 +44,32 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.TasksViewHolder> {
         return taskList.size();
     }
 
-    class TasksViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class TasksViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv_list_item;
+        RelativeLayout rc_item;
 
         public TasksViewHolder(View itemView) {
             super(itemView);
 
             tv_list_item = itemView.findViewById(R.id.tv_list_item);
+            rc_item = itemView.findViewById(R.id.rc_item);
 
 
-            itemView.setOnClickListener(this);
+            rc_item.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    singleITemcClick.onSingleItemClick(view);
+                }
+            });
         }
 
-        @Override
+       /* @Override
         public void onClick(View view) {
             MyRoomTask task = taskList.get(getAdapterPosition());
 
-           /* Intent intent = new Intent(mCtx, UpdateTaskActivity.class);
-            intent.putExtra("task", task);
 
-            mCtx.startActivity(intent);*/
-        }
+        }*/
     }
 }
