@@ -1,7 +1,8 @@
-package com.example.testroomtask
+package com.example.testroomtask.RoomDatabase
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.example.testroomtask.Interfaces.TaskDaoInterface
 
 
 @Database(entities = [MyRoomTask::class], version = 1)

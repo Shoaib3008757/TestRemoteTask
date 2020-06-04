@@ -1,4 +1,4 @@
-package com.example.testroomtask
+package com.example.testroomtask.Activities
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,11 +10,11 @@ import android.widget.CheckBox
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.testroomtask.R
 import com.example.testroomtask.RoomDatabase.DatabaseClient2
 import com.example.testroomtask.RoomDatabase.MyRoomTask
 
-class MainActivity : AppCompatActivity() {
-
+class ActivitySecondPage : AppCompatActivity(){
 
     var ch_box: CheckBox? = null
     var bt_submit: Button? = null
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 updateTask(task!!, item!!)
             } else {
                 Toast.makeText(
-                    this@MainActivity,
+                    this@ActivitySecondPage,
                     "Please Check Term and condition",
                     Toast.LENGTH_SHORT
                 ).show()
@@ -88,3 +88,4 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+

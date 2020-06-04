@@ -1,6 +1,7 @@
-package com.example.testroomtask
+package com.example.testroomtask.Interfaces
 
 import androidx.room.*
+import com.example.testroomtask.RoomDatabase.MyRoomTask
 
 
 @Dao

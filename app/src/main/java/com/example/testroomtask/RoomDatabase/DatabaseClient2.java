@@ -1,4 +1,4 @@
-package com.example.testroomtask;
+package com.example.testroomtask.RoomDatabase;
 
 import android.content.Context;
 
