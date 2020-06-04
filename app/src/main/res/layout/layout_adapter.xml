@@ -15,9 +15,7 @@
             android:id="@+id/tv_list_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:background="#ffff"
-            android:text=""
+            android:text="abc"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             android:textColor="#000"
             android:textStyle="bold" />
