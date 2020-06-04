@@ -2,6 +2,7 @@ package com.example.testroomtask
 
 import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() {
                 val taksItem = "item $i"
                 saveTask(taksItem)
             }
+
+            Log.d("Tag", "Inserted to Room")
         }
 
     }
