@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="abc"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-            android:textColor="#000"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <TextView
@@ -28,7 +28,7 @@
             android:text="abc"
             android:visibility="gone"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-            android:textColor="#000"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <TextView

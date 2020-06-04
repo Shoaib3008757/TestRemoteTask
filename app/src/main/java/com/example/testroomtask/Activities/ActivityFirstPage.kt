@@ -18,7 +18,7 @@ import com.example.testroomtask.RoomDatabase.MyRoomTask
 
 class ActivityFirstPage : AppCompatActivity(){
     var rc_list: RecyclerView? = null
-    var sharedPreferences: SharedPreferences = getSharedPreferences("PREF", 0)
+    //var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,7 @@ class ActivityFirstPage : AppCompatActivity(){
 
     }
     private fun init() {
-        sharedPreferences = getSharedPreferences("PREF", 0)
+        var sharedPreferences: SharedPreferences = getSharedPreferences("PREF", 0)
         val firstTimeLunch = sharedPreferences.getString("firTime", "")
         rc_list = findViewById<View>(R.id.rc_list) as RecyclerView
         rc_list!!.layoutManager = LinearLayoutManager(this)
