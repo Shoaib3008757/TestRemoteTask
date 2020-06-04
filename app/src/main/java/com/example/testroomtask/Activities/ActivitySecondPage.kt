@@ -22,8 +22,6 @@ class ActivitySecondPage : AppCompatActivity(){
     var item: String? = null
     var task: MyRoomTask? = null
 
-    var rc_list: RecyclerView? = null
-    var sharedPreferences: SharedPreferences = getSharedPreferences("PREF", 0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
